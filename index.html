@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <h2>Ajax And Fetch</h2>
+    
+    <div class="container">
+        <div class="box1">
+            <input type="text" id="cityname" placeholder="Cityname" style="padding-left: 5px;">
+        </div>
+
+        <div class="box2">
+
+            <div class="cbox1">
+                <img src="">
+                <p id="desc"></p>
+                <h2 id="temp"></h2>
+            </div>
+            <div class="cbox2">
+                <h1 id="city"></h1>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+
+        let cityData=document.querySelector("#cityname");
+
+
+        cityData.addEventListener("change",(e)=>
+        {
+            let cityname=e.target.value;
+            getData(cityname);
+        })
+
+        
+        async function getData(cityname)
+        {
+        //     let xhr=new XMLHttpRequest();
+
+        // xhr.onreadystatechange=function()
+        // {
+        //     if(this.readyState==4 && this.status==200)
+        //     {
+        //         let data=this.responseText;
+        //         data=JSON.parse(data);
+
+            //     let cityName=data.name
+            //     let temp=data.main.temp
+            //     let weatherDesc=data.weather[0].description
+            //     let icon=data.weather[0].icon
+
+            //     document.querySelector("#city").innerText=cityName;
+            //     document.querySelector(".cbox1").childNodes[1].src=`http://openweathermap.org/img/wn/${icon}@2x.png`;
+            //     document.querySelector("#desc").innerText=weatherDesc;
+            //     document.querySelector("#temp").innerText=temp+" C";
+            // }
+            
+        //     if(this.readyState==4 && this.status!=200)
+        //     {
+        //         document.write("Cannot get data");
+        //     }
+
+
+        // }
+
+
+
+
+        // xhr.open("GET",`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=a50125806c9c55f6a7582def6ba201a8&units=metric`,true);
+        // xhr.send();
+
+            let data=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=a50125806c9c55f6a7582def6ba201a8&units=metric`);
+            
+            data.text().then((data)=>{
+            
+                data=JSON.parse(data);
+                console.log(data);
+                let cityName=data.name
+                let temp=data.main.temp
+                let weatherDesc=data.weather[0].description
+                let icon=data.weather[0].icon
+
+                document.querySelector("#city").innerText=cityName;
+                document.querySelector(".cbox1").childNodes[1].src=`http://openweathermap.org/img/wn/${icon}@2x.png`;
+                document.querySelector("#desc").innerText=weatherDesc;
+                document.querySelector("#temp").innerText=temp+" C";
+            
+            }).catch(()=>{document.write("Cannot get data");})
+
+        }
+
+        getData("gauhati");
+// a50125806c9c55f6a7582def6ba201a8
+// https://api.openweathermap.org/data/2.5/weather?q=London&appid=a50125806c9c55f6a7582def6ba201a8
+
+    </script>
+
+</body>
+</html>

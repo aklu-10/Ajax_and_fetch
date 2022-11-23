@@ -1,0 +1,107 @@
+    *
+    {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui;
+    }
+
+    body
+    {
+        min-height: 100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction: column;
+    }
+
+    .container
+    {
+        width:500px;
+        height: 300px;
+        box-shadow: 0 0 4px gray;
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .container .box1
+    {
+        flex-basis: 40%;
+        border:1px solid gray;
+        display: grid;
+        place-items: center;
+    }
+
+    .container .box1 input
+    {
+        width:80%;
+        height: 40px;
+
+    }
+
+
+
+    .container .box2
+    {
+        display: flex;
+        flex-basis: 60%;
+        border:1px solid gray;
+    }
+
+    .container .cbox1
+    {
+        border-right:1px solid gray;
+    }
+
+    .container .cbox1,
+    .container .cbox2
+    {
+        width: 50%;
+        display: grid;
+        place-items: center;
+    }
+
+    @media (max-width:500px)
+    {
+        .container
+        {
+            height: 450px;
+            width:100%;
+        }
+        .container .box2
+        {
+            flex-direction: column;
+        }    
+        
+        .container .cbox1
+        {
+            border:none;
+            border-bottom:1px solid gray;
+        }
+    
+        .container .cbox1,
+        .container .cbox2
+        {
+            width:100%;
+        }
+
+
+        .container .cbox1 p
+        {
+            font-size: 15px;
+        }
+
+
+        .container .cbox1 h2
+        {
+            font-size: 1.5rem;
+        }
+
+        .container .cbox2 h1
+        {
+                padding-top: 10%;
+        }
+
+        
+    }
